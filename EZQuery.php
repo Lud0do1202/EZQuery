@@ -1,19 +1,15 @@
 <?php
+require_once "./config.php";
 
 class EZQuery
 {
-    const HOST = "host";
-    const DB_NAME = "db_name";
-    const USERNAME = "username";
-    const PASSWORD = "password";
-
     private PDO $pdo;
     private bool $debug = false;
 
     public function __construct()
     {
         /* Connection to the db */
-        $pdo = new PDO("mysql:host=" . self::HOST . ";dbname=" . self::DB_NAME, self::USERNAME, self::PASSWORD);
+        $pdo = new PDO("mysql:host=" . HOST . ";dbname=" . DB_NAME, USERNAME, PASSWORD);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $this->pdo = $pdo;
     }
