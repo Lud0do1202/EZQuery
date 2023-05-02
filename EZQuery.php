@@ -89,10 +89,13 @@ class EZQuery
         $count = count($split);
         for ($i = $j = 0; $i < $count; $i++) {
             switch ($split[$i]) {
-                case '%':
+                case '\\': // Skip the next char
+                    $i++;
+                    break;
+                case '%': // Replace
                     $split[$i] = $args[$j++];
                     break;
-                case '?':
+                case '?': // Bind
                     $argsToBind[] = $args[$j++];
                     break;
             }
