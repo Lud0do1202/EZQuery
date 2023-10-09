@@ -98,6 +98,7 @@ $ez = new EZQuery();
 $ez->debug();
 $id = 0;
 $user = $ez->executeSelect("SELECT lastname, firstname FROM users WHERE id = ?", $id);
+$ez->debug(false);
 ```
 
 ```html
