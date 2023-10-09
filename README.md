@@ -102,7 +102,7 @@ $ez->debug(false);
 ```
 
 ```html
-SELECT lastname, firstname FROM users WHERE id = ? <br />
+SELECT lastname, firstname FROM users WHERE id = ?
 
 Array ( [0] => 0 )
 ```
