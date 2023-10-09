@@ -1,26 +1,33 @@
 <?php
-require_once "./config.php";
+
+require_once __DIR__ . "/config.php";
 
 class EZQuery
 {
+    /* --------------------------------- Var -------------------------------- */
     private PDO $pdo;
     private bool $debug = false;
 
+    /* ----------------------------- Constructor ---------------------------- */
     public function __construct()
     {
-        /* Connection to the db */
+        // Connection to the DB
         $pdo = new PDO("mysql:host=" . HOST . ";dbname=" . DB_NAME, USERNAME, PASSWORD);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $this->pdo = $pdo;
     }
 
-    /* Debug */
+    /**
+     * Echo the query executed and the args binding
+     */
     public function debug(?bool $debug = true): void
     {
         $this->debug = $debug;
     }
 
-    /* Select */
+    /**
+     * Execute a SELECT query
+     */
     public function executeSelect(string $query, ...$args): array
     {
         // Replace % ? by args
@@ -45,6 +52,9 @@ class EZQuery
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * Execute an EDIT query (insert, update, delete, ...)
+     */
     public function executeEdit(string $query, ...$args): int
     {
         // Replace % ? by args
@@ -69,7 +79,9 @@ class EZQuery
         return $stmt->rowCount();
     }
 
-    /* Display query */
+    /**
+     * Echo the query and the args binding
+     */
     private function displayQuery(string $query, array $args): void
     {
         echo "<br><strong>$query<br><pre><i>";
@@ -77,8 +89,12 @@ class EZQuery
         echo "</i></pre></strong><br>";
     }
 
+    /**
+     * Convert the %, ? by the args
+     */
     private function convertArgs(string $query, array $args): array
     {
+        // Args to bind
         $argsToBind = [];
 
         // Split into a table the string $where
