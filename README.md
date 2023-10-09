@@ -114,3 +114,4 @@ Array ( [0] => 0 )
 - To run the demo you have to create a DB named **'demo_ezquery'** and the SQL to generate the DB is in *./demo/demo_ezquery.sql*
 - Do a git clone
 - Open the page *./demo/demo.php*
+- If you don't want to create the DB, the output of the demo.php is in *./demo/output-demo.php*
