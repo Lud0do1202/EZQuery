@@ -39,6 +39,19 @@ $users = [
 
 ---
 
+## Select query (empty)
+
+```php
+$ez = new EZQuery();
+$user = $ez->executeSelect("SELECT lastname, firstname FROM users WHERE id = ", 100);
+```
+
+```php
+$user = []
+```
+
+---
+
 ## Edit query (Insert, Delete, Update, ...)
 
 ```php
@@ -83,13 +96,20 @@ $user = [
 ```php
 $ez = new EZQuery();
 $ez->debug();
-$id = 2;
+$id = 0;
 $user = $ez->executeSelect("SELECT lastname, firstname FROM users WHERE id = ?", $id);
 ```
 
 ```html
-SELECT lastname, firstname FROM users WHERE id = ? 
-Array( 
-  [0] = 2 
-)
+SELECT lastname, firstname FROM users WHERE id = ? <br />
+
+Array ( [0] => 0 )
 ```
+
+---
+
+## Demo
+
+- To run the demo you have to create a DB named **'demo_ezquery'** and the SQL to generate the DB is in **./demo/demo_ezquery.sql**
+- Do a git clone
+- Open the page **./demo/demo.php**
